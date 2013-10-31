@@ -13,10 +13,5 @@ Rake::Task[assets_task].enhance do
   # tinymce-rails 5c8e83a changes how the AssetInstaller initialize method
   # works. To preserve backward compatibility, we check the amount of
   # arguments it expects.
-  if TinyMCE::Rails::AssetInstaller.instance_method(:initialize).arity == 3
-    TinyMCE::Rails::AssetInstaller.new(assets, target, manifest).install
-  else
-    TinyMCE::Rails::AssetInstaller::ASSETS = assets
-    TinyMCE::Rails::AssetInstaller.new(target, manifest).install
-  end
+  TinyMCE::Rails::AssetInstaller.new(assets, target, manifest).install
 end
